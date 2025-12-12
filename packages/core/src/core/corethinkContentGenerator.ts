@@ -302,11 +302,49 @@ function convertToOpenAITools(config: GenerateContentParameters['config']): Open
  */
 function mapToolCallArguments(functionName: string, args: Record<string, unknown>): Record<string, unknown> {
   // Parameter name mappings for different tools
+  // CoreThink uses OpenAI-style parameter names, which differ from Gemini's conventions
   const mappings: Record<string, Record<string, string>> = {
-    'list_directory': { 'path': 'dir_path' },
+    // File path mappings (OpenAI uses 'path', Gemini uses specific names)
+    'list_directory': { 'path': 'dir_path', 'directory': 'dir_path' },
     'read_file': { 'path': 'file_path' },
-    'search_file_content': { 'path': 'file_path' },
-    'glob': { 'path': 'pattern' },
+    'write_file': { 'path': 'file_path' },
+    'replace': {
+      'path': 'file_path',
+      'old': 'old_string',
+      'new': 'new_string',
+      'find': 'old_string',
+      'replace': 'new_string',
+    },
+    'search_file_content': {
+      'path': 'file_path',
+      'directory': 'dir_path',
+      'dir': 'dir_path',
+      'search': 'pattern',
+      'regex': 'pattern',
+      'query': 'pattern',
+    },
+    'glob': {
+      'path': 'pattern',
+      'directory': 'dir_path',
+      'dir': 'dir_path',
+    },
+    // Shell command mappings
+    'run_shell_command': {
+      'cmd': 'command',
+      'directory': 'dir_path',
+      'dir': 'dir_path',
+      'path': 'dir_path',
+    },
+    // Web search mappings
+    'google_web_search': {
+      'search': 'query',
+      'q': 'query',
+      'search_query': 'query',
+    },
+    // Web fetch mappings
+    'web_fetch': {
+      'url': 'prompt',  // If model sends just URL, wrap in prompt
+    },
     // delegate_to_agent mappings - CoreThink uses different parameter names
     'delegate_to_agent': {
       'agent': 'agent_name',

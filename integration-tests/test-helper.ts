@@ -351,6 +351,11 @@ export class TestRig {
     return filePath;
   }
 
+  fileExists(fileName: string): boolean {
+    const filePath = join(this.testDir!, fileName);
+    return fs.existsSync(filePath);
+  }
+
   mkdir(dir: string) {
     mkdirSync(join(this.testDir!, dir), { recursive: true });
   }
