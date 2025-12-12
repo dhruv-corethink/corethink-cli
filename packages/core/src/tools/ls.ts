@@ -321,9 +321,8 @@ export class LSTool extends BaseDeclarativeTool<LSToolParams, ToolResult> {
     const workspaceContext = this.config.getWorkspaceContext();
     if (!workspaceContext.isPathWithinWorkspace(resolvedPath)) {
       const directories = workspaceContext.getDirectories();
-      return `Path must be within one of the workspace directories: ${directories.join(
-        ', ',
-      )}`;
+      const relativePath = path.relative(this.config.getTargetDir(), resolvedPath);
+      return `Cannot access '${relativePath}' - it is outside the workspace. You can only access paths within these workspace directories: ${directories.join(', ')}. If you need to access files in a different directory, ask the user to change the working directory or add it to the workspace.`;
     }
     return null;
   }

@@ -34,6 +34,11 @@ export const GeminiMessageContent: React.FC<GeminiMessageContentProps> = ({
   const originalPrefix = '✦ ';
   const prefixWidth = originalPrefix.length;
 
+  // Don't render empty or whitespace-only messages
+  if (!text || text.trim().length === 0) {
+    return null;
+  }
+
   return (
     <Box flexDirection="column" paddingLeft={prefixWidth}>
       <MarkdownDisplay

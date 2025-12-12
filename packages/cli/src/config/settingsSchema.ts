@@ -381,7 +381,7 @@ const SETTINGS_SCHEMA = {
         requiresRestart: false,
         default: false,
         description:
-          'Show Gemini CLI status and thoughts in the terminal window title',
+          'Show CoreThink CLI status and thoughts in the terminal window title',
         showInDialog: true,
       },
       hideTips: {
@@ -409,7 +409,7 @@ const SETTINGS_SCHEMA = {
         requiresRestart: false,
         default: false,
         description:
-          'Hide the context summary (GEMINI.md, MCP servers) above the input.',
+          'Hide the context summary (CORETHINK.md, MCP servers) above the input.',
         showInDialog: true,
       },
       footer: {
@@ -824,7 +824,7 @@ const SETTINGS_SCHEMA = {
         requiresRestart: false,
         default: false,
         description: oneLine`
-          Controls how /memory refresh loads GEMINI.md files.
+          Controls how /memory refresh loads CORETHINK.md files.
           When true, include directories are scanned; when false, only the current directory is used.
         `,
         showInDialog: true,
@@ -849,11 +849,11 @@ const SETTINGS_SCHEMA = {
           },
           respectGeminiIgnore: {
             type: 'boolean',
-            label: 'Respect .geminiignore',
+            label: 'Respect .corethinkignore',
             category: 'Context',
             requiresRestart: true,
             default: true,
-            description: 'Respect .geminiignore files when searching',
+            description: 'Respect .corethinkignore (and legacy .geminiignore) files when searching',
             showInDialog: true,
           },
           enableRecursiveFileSearch: {

@@ -8,12 +8,17 @@ import * as path from 'node:path';
 import * as os from 'node:os';
 import * as crypto from 'node:crypto';
 import * as fs from 'node:fs';
-import { GEMINI_DIR } from '../utils/paths.js';
+import { CORETHINK_DIR } from '../utils/paths.js';
 
 export const GOOGLE_ACCOUNTS_FILENAME = 'google_accounts.json';
 export const OAUTH_FILE = 'oauth_creds.json';
 const TMP_DIR_NAME = 'tmp';
 const BIN_DIR_NAME = 'bin';
+
+// Use CoreThink directory by default, but check for legacy Gemini directory
+function getActiveConfigDir(): string {
+  return CORETHINK_DIR;
+}
 
 export class Storage {
   private readonly targetDir: string;
@@ -23,11 +28,15 @@ export class Storage {
   }
 
   static getGlobalGeminiDir(): string {
+    return Storage.getGlobalCorethinkDir();
+  }
+
+  static getGlobalCorethinkDir(): string {
     const homeDir = os.homedir();
     if (!homeDir) {
-      return path.join(os.tmpdir(), GEMINI_DIR);
+      return path.join(os.tmpdir(), getActiveConfigDir());
     }
-    return path.join(homeDir, GEMINI_DIR);
+    return path.join(homeDir, getActiveConfigDir());
   }
 
   static getMcpOAuthTokensPath(): string {
@@ -59,15 +68,19 @@ export class Storage {
   }
 
   static getSystemSettingsPath(): string {
+    if (process.env['CORETHINK_CLI_SYSTEM_SETTINGS_PATH']) {
+      return process.env['CORETHINK_CLI_SYSTEM_SETTINGS_PATH'];
+    }
+    // Legacy support
     if (process.env['GEMINI_CLI_SYSTEM_SETTINGS_PATH']) {
       return process.env['GEMINI_CLI_SYSTEM_SETTINGS_PATH'];
     }
     if (os.platform() === 'darwin') {
-      return '/Library/Application Support/GeminiCli/settings.json';
+      return '/Library/Application Support/CoreThinkCli/settings.json';
     } else if (os.platform() === 'win32') {
-      return 'C:\\ProgramData\\gemini-cli\\settings.json';
+      return 'C:\\ProgramData\\corethink-cli\\settings.json';
     } else {
-      return '/etc/gemini-cli/settings.json';
+      return '/etc/corethink-cli/settings.json';
     }
   }
 
@@ -84,7 +97,11 @@ export class Storage {
   }
 
   getGeminiDir(): string {
-    return path.join(this.targetDir, GEMINI_DIR);
+    return this.getCorethinkDir();
+  }
+
+  getCorethinkDir(): string {
+    return path.join(this.targetDir, getActiveConfigDir());
   }
 
   getProjectTempDir(): string {
@@ -132,7 +149,7 @@ export class Storage {
   }
 
   getExtensionsConfigPath(): string {
-    return path.join(this.getExtensionsDir(), 'gemini-extension.json');
+    return path.join(this.getExtensionsDir(), 'corethink-extension.json');
   }
 
   getHistoryFilePath(): string {

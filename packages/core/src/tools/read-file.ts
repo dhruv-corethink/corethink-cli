@@ -205,7 +205,8 @@ export class ReadFileTool extends BaseDeclarativeTool<
       !isWithinTempDir
     ) {
       const directories = workspaceContext.getDirectories();
-      return `File path must be within one of the workspace directories: ${directories.join(', ')} or within the project temp directory: ${projectTempDir}`;
+      const relativePath = path.relative(this.config.getTargetDir(), resolvedPath);
+      return `Cannot access '${relativePath}' - it is outside the workspace. You can only access paths within these workspace directories: ${directories.join(', ')} or the project temp directory: ${projectTempDir}. If you need to access files in a different directory, ask the user to change the working directory or add it to the workspace.`;
     }
     if (params.offset !== undefined && params.offset < 0) {
       return 'Offset must be a non-negative number';

@@ -26,6 +26,7 @@ export * from './commands/types.js';
 // Export Core Logic
 export * from './core/client.js';
 export * from './core/contentGenerator.js';
+export * from './core/corethinkContentGenerator.js';
 export * from './core/loggingContentGenerator.js';
 export * from './core/geminiChat.js';
 export * from './core/logger.js';

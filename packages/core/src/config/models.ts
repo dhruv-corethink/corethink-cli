@@ -9,11 +9,15 @@ export const DEFAULT_GEMINI_MODEL = 'gemini-2.5-pro';
 export const DEFAULT_GEMINI_FLASH_MODEL = 'gemini-2.5-flash';
 export const DEFAULT_GEMINI_FLASH_LITE_MODEL = 'gemini-2.5-flash-lite';
 
+// CoreThink model
+export const DEFAULT_CORETHINK_MODEL = 'corethink';
+
 export const VALID_GEMINI_MODELS = new Set([
   PREVIEW_GEMINI_MODEL,
   DEFAULT_GEMINI_MODEL,
   DEFAULT_GEMINI_FLASH_MODEL,
   DEFAULT_GEMINI_FLASH_LITE_MODEL,
+  DEFAULT_CORETHINK_MODEL,
 ]);
 
 export const DEFAULT_GEMINI_MODEL_AUTO = 'auto';
@@ -29,6 +33,14 @@ export const DEFAULT_GEMINI_EMBEDDING_MODEL = 'gemini-embedding-001';
 export const DEFAULT_THINKING_MODE = 8192;
 
 /**
+ * Check if CoreThink mode is enabled (CORETHINK_API_KEY is set)
+ */
+export function isCoreThinkMode(): boolean {
+  const apiKey = process.env['CORETHINK_API_KEY'];
+  return !!apiKey && apiKey.startsWith('sk_');
+}
+
+/**
  * Resolves the requested model alias (e.g., 'auto', 'pro', 'flash', 'flash-lite')
  * to a concrete model name, considering preview features.
  *
@@ -40,6 +52,11 @@ export function resolveModel(
   requestedModel: string,
   previewFeaturesEnabled: boolean | undefined,
 ): string {
+  // If CoreThink mode is enabled, always use CoreThink model
+  if (isCoreThinkMode()) {
+    return DEFAULT_CORETHINK_MODEL;
+  }
+
   switch (requestedModel) {
     case DEFAULT_GEMINI_MODEL_AUTO:
     case GEMINI_MODEL_ALIAS_PRO: {
@@ -78,6 +95,11 @@ export function getEffectiveModel(
   requestedModel: string,
   previewFeaturesEnabled: boolean | undefined,
 ): string {
+  // If CoreThink mode is enabled, always use CoreThink model
+  if (isCoreThinkMode()) {
+    return DEFAULT_CORETHINK_MODEL;
+  }
+
   const resolvedModel = resolveModel(requestedModel, previewFeaturesEnabled);
 
   // If we are not in fallback mode, simply use the resolved model.

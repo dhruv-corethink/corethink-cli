@@ -24,6 +24,7 @@ import { FakeContentGenerator } from './fakeContentGenerator.js';
 import { parseCustomHeaders } from '../utils/customHeaderUtils.js';
 import { RecordingContentGenerator } from './recordingContentGenerator.js';
 import { getVersion, getEffectiveModel } from '../../index.js';
+import { createCoreThinkContentGenerator } from './corethinkContentGenerator.js';
 
 /**
  * Interface abstracting the core functionalities for generating content and counting tokens.
@@ -52,6 +53,7 @@ export enum AuthType {
   USE_VERTEX_AI = 'vertex-ai',
   LEGACY_CLOUD_SHELL = 'cloud-shell',
   COMPUTE_ADC = 'compute-default-credentials',
+  USE_CORETHINK = 'corethink-api-key', // CoreThink API key auth
 }
 
 export type ContentGeneratorConfig = {
@@ -65,6 +67,18 @@ export async function createContentGeneratorConfig(
   config: Config,
   authType: AuthType | undefined,
 ): Promise<ContentGeneratorConfig> {
+  // Check for CoreThink API key first
+  const coreThinkApiKey = process.env['CORETHINK_API_KEY'] || undefined;
+
+  // If CoreThink API key is set, use CoreThink auth
+  if (coreThinkApiKey && coreThinkApiKey.startsWith('sk_')) {
+    return {
+      apiKey: coreThinkApiKey,
+      authType: AuthType.USE_CORETHINK,
+      proxy: config?.getProxy(),
+    };
+  }
+
   const geminiApiKey =
     (await loadApiKey()) || process.env['GEMINI_API_KEY'] || undefined;
   const googleApiKey = process.env['GOOGLE_API_KEY'] || undefined;
@@ -116,6 +130,13 @@ export async function createContentGenerator(
     if (gcConfig.fakeResponses) {
       return FakeContentGenerator.fromFile(gcConfig.fakeResponses);
     }
+
+    // Handle CoreThink API - this takes priority
+    if (config.authType === AuthType.USE_CORETHINK) {
+      const apiUrl = process.env['CORETHINK_API_URL'] || 'https://api.corethink.ai/v1/code';
+      return createCoreThinkContentGenerator(apiUrl, config.apiKey);
+    }
+
     const version = await getVersion();
     const model = getEffectiveModel(
       gcConfig.isInFallbackMode(),

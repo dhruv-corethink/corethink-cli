@@ -9,6 +9,25 @@ import { loadEnvironment, loadSettings } from './settings.js';
 
 export function validateAuthMethod(authMethod: string): string | null {
   loadEnvironment(loadSettings().merged);
+
+  // CoreThink API key validation
+  if (authMethod === AuthType.USE_CORETHINK) {
+    const apiKey = process.env['CORETHINK_API_KEY'];
+    if (!apiKey) {
+      return (
+        'When using CoreThink API, you must specify the CORETHINK_API_KEY environment variable.\n' +
+        'Update your environment and try again (no reload needed if using .env)!'
+      );
+    }
+    if (!apiKey.startsWith('sk_')) {
+      return (
+        'Invalid CoreThink API key format. API key must start with "sk_".\n' +
+        'Get your API key from https://corethink.dev'
+      );
+    }
+    return null;
+  }
+
   if (
     authMethod === AuthType.LOGIN_WITH_GOOGLE ||
     authMethod === AuthType.COMPUTE_ADC

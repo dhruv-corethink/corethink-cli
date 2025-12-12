@@ -31,6 +31,10 @@ export function validateAuthMethodWithSettings(
   if (authType === AuthType.USE_GEMINI) {
     return null;
   }
+  // CoreThink API key - validate immediately if present
+  if (authType === AuthType.USE_CORETHINK) {
+    return validateAuthMethod(authType);
+  }
   return validateAuthMethod(authType);
 }
 
@@ -76,11 +80,30 @@ export const useAuthCommand = (settings: LoadedSettings, config: Config) => {
         return;
       }
 
+      // Check if CoreThink API key is set - auto-select CoreThink auth
+      const coreThinkApiKey = process.env['CORETHINK_API_KEY'];
+      if (coreThinkApiKey && coreThinkApiKey.startsWith('sk_')) {
+        // Auto-authenticate with CoreThink
+        try {
+          await config.refreshAuth(AuthType.USE_CORETHINK);
+          debugLogger.log('Authenticated via CoreThink API key.');
+          setAuthError(null);
+          setAuthState(AuthState.Authenticated);
+        } catch (e) {
+          onAuthError(`Failed to login with CoreThink. Message: ${getErrorMessage(e)}`);
+        }
+        return;
+      }
+
       const authType = settings.merged.security?.auth?.selectedType;
       if (!authType) {
         if (process.env['GEMINI_API_KEY']) {
           onAuthError(
             'Existing API key detected (GEMINI_API_KEY). Select "Gemini API Key" option to use it.',
+          );
+        } else if (coreThinkApiKey) {
+          onAuthError(
+            'CoreThink API key detected but invalid format. Key must start with "sk_".',
           );
         } else {
           onAuthError('No authentication method selected.');

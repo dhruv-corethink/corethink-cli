@@ -63,7 +63,7 @@ import {
 } from '../availability/policyHelpers.js';
 import type { RetryAvailabilityContext } from '../utils/retry.js';
 
-const MAX_TURNS = 100;
+const MAX_TURNS = 1;
 
 export class GeminiClient {
   private chat?: GeminiChat;

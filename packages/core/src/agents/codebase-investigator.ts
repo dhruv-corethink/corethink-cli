@@ -77,7 +77,7 @@ export const CodebaseInvestigatorAgent: AgentDefinition<
 
   runConfig: {
     max_time_minutes: 5,
-    max_turns: 15,
+    max_turns: 5,
   },
 
   toolConfig: {

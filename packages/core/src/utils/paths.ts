@@ -8,7 +8,8 @@ import path from 'node:path';
 import os from 'node:os';
 import * as crypto from 'node:crypto';
 
-export const GEMINI_DIR = '.gemini';
+export const GEMINI_DIR = '.gemini';  // Legacy, kept for backward compatibility
+export const CORETHINK_DIR = '.corethink';
 export const GOOGLE_ACCOUNTS_FILENAME = 'google_accounts.json';
 
 /**

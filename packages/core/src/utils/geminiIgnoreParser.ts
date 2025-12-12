@@ -13,6 +13,9 @@ export interface GeminiIgnoreFilter {
   getPatterns(): string[];
 }
 
+// Alias for backward compatibility
+export type CorethinkIgnoreFilter = GeminiIgnoreFilter;
+
 export class GeminiIgnoreParser implements GeminiIgnoreFilter {
   private projectRoot: string;
   private patterns: string[] = [];
@@ -24,13 +27,20 @@ export class GeminiIgnoreParser implements GeminiIgnoreFilter {
   }
 
   private loadPatterns(): void {
-    const patternsFilePath = path.join(this.projectRoot, '.geminiignore');
+    // Try corethinkignore first, then fall back to geminiignore for backward compatibility
+    let patternsFilePath = path.join(this.projectRoot, '.corethinkignore');
     let content: string;
     try {
       content = fs.readFileSync(patternsFilePath, 'utf-8');
     } catch (_error) {
-      // ignore file not found
-      return;
+      // Try legacy .geminiignore
+      try {
+        patternsFilePath = path.join(this.projectRoot, '.geminiignore');
+        content = fs.readFileSync(patternsFilePath, 'utf-8');
+      } catch (_legacyError) {
+        // Neither file found
+        return;
+      }
     }
 
     this.patterns = (content ?? '')

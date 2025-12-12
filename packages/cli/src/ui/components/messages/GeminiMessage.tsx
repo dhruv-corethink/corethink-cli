@@ -29,6 +29,12 @@ export const GeminiMessage: React.FC<GeminiMessageProps> = ({
   const prefix = '✦ ';
   const prefixWidth = prefix.length;
 
+  // Don't render empty or whitespace-only messages
+  // This prevents "✦ " with no content from appearing
+  if (!text || text.trim().length === 0) {
+    return null;
+  }
+
   const isAlternateBuffer = useAlternateBuffer();
   return (
     <Box flexDirection="row">
