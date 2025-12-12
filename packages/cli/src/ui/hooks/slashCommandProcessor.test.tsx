@@ -25,7 +25,7 @@ import {
   SlashCommandStatus,
   ToolConfirmationOutcome,
   makeFakeConfig,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import { appEvents } from '../../utils/events.js';
 
 const {
@@ -51,9 +51,8 @@ vi.mock('./useAlternateBuffer.js', () => ({
   useAlternateBuffer: mockUseAlternateBuffer,
 }));
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const original = await importOriginal<typeof import('corethink-cli-core')>();
 
   return {
     ...original,

@@ -12,7 +12,7 @@ import {
   type PolicySettings,
   createPolicyEngineConfig as createCorePolicyEngineConfig,
   createPolicyUpdater as createCorePolicyUpdater,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import { type Settings } from './settings.js';
 
 export async function createPolicyEngineConfig(

@@ -12,7 +12,7 @@ import type {
   ToolResult,
   ToolCallConfirmationDetails,
   FilterFilesOptions,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import {
   AuthType,
   logToolCall,
@@ -32,7 +32,7 @@ import {
   getEffectiveModel,
   createWorkingStdio,
   startupProfiler,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import * as acp from './acp.js';
 import { AcpFileSystemService } from './fileSystemService.js';
 import { Readable, Writable } from 'node:stream';

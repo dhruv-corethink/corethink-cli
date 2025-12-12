@@ -16,12 +16,11 @@ import {
   refreshServerHierarchicalMemory,
   SimpleExtensionLoader,
   type FileDiscoveryService,
-} from '@google/gemini-cli-core';
-import type { LoadServerHierarchicalMemoryResponse } from '@google/gemini-cli-core/index.js';
+} from 'corethink-cli-core';
+import type { LoadServerHierarchicalMemoryResponse } from 'corethink-cli-core/index.js';
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const original = await importOriginal<typeof import('corethink-cli-core')>();
   return {
     ...original,
     getErrorMessage: vi.fn((error: unknown) => {

@@ -13,9 +13,8 @@ import { KeypressProvider } from '../contexts/KeypressContext.js';
 import { act } from 'react';
 import { waitFor } from '../../test-utils/async.js';
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('corethink-cli-core')>();
   return {
     ...actual,
     isEditorAvailable: () => true, // Mock to behave predictably in CI

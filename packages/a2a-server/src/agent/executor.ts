@@ -16,11 +16,8 @@ import type {
   ToolCallRequestInfo,
   ServerGeminiToolCallRequestEvent,
   Config,
-} from '@google/gemini-cli-core';
-import {
-  GeminiEventType,
-  SimpleExtensionLoader,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
+import { GeminiEventType, SimpleExtensionLoader } from 'corethink-cli-core';
 import { v4 as uuidv4 } from 'uuid';
 
 import { logger } from '../utils/logger.js';

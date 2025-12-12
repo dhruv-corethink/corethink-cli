@@ -1,91 +1,71 @@
-# Gemini CLI
+# CoreThink CLI
 
-[![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
-[![Gemini CLI E2E (Chained)](https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml)
-[![Version](https://img.shields.io/npm/v/@google/gemini-cli)](https://www.npmjs.com/package/@google/gemini-cli)
-[![License](https://img.shields.io/github/license/google-gemini/gemini-cli)](https://github.com/google-gemini/gemini-cli/blob/main/LICENSE)
-[![View Code Wiki](https://www.gstatic.com/_/boq-sdlc-agents-ui/_/r/YUi5dj2UWvE.svg)](https://codewiki.google/github.com/google-gemini/gemini-cli)
+[![License](https://img.shields.io/github/license/dhruv-corethink/corethink-cli)](https://github.com/dhruv-corethink/corethink-cli/blob/main/LICENSE)
+[![Version](https://img.shields.io/npm/v/corethink-cli)](https://www.npmjs.com/package/corethink-cli)
 
-![Gemini CLI Screenshot](./docs/assets/gemini-screenshot.png)
+CoreThink CLI is an AI-powered command-line assistant that brings advanced AI
+capabilities directly into your terminal. Built on the foundation of Google's
+Gemini CLI, CoreThink CLI provides developers with powerful code understanding,
+generation, and automation features.
 
-Gemini CLI is an open-source AI agent that brings the power of Gemini directly
-into your terminal. It provides lightweight access to Gemini, giving you the
-most direct path from your prompt to our model.
+## 🚀 Why CoreThink CLI?
 
-Learn all about Gemini CLI in our [documentation](https://geminicli.com/docs/).
-
-## 🚀 Why Gemini CLI?
-
-- **🎯 Free tier**: 60 requests/min and 1,000 requests/day with personal Google
-  account.
-- **🧠 Powerful Gemini 2.5 Pro**: Access to 1M token context window.
-- **🔧 Built-in tools**: Google Search grounding, file operations, shell
-  commands, web fetching.
+- **🧠 Powerful AI Models**: Access to advanced language models with large
+  context windows
+- **🔧 Built-in Tools**: File operations, shell commands, web fetching, and more
 - **🔌 Extensible**: MCP (Model Context Protocol) support for custom
-  integrations.
-- **💻 Terminal-first**: Designed for developers who live in the command line.
-- **🛡️ Open source**: Apache 2.0 licensed.
+  integrations
+- **💻 Terminal-first**: Designed for developers who live in the command line
+- **🛡️ Open source**: Apache 2.0 licensed
 
 ## 📦 Installation
 
-### Pre-requisites before installation
+### Pre-requisites
 
 - Node.js version 20 or higher
 - macOS, Linux, or Windows
 
 ### Quick Install
 
-#### Run instantly with npx
-
-```bash
-# Using npx (no installation required)
-npx https://github.com/google-gemini/gemini-cli
-```
-
 #### Install globally with npm
 
 ```bash
-npm install -g @google/gemini-cli
+npm install -g corethink-cli
 ```
 
-#### Install globally with Homebrew (macOS/Linux)
+#### Run instantly with npx
 
 ```bash
-brew install gemini-cli
+npx corethink-cli
 ```
 
-## Release Cadence and Tags
+## 🎯 Getting Started
 
-See [Releases](./docs/releases.md) for more details.
-
-### Preview
-
-New preview releases will be published each week at UTC 2359 on Tuesdays. These
-releases will not have been fully vetted and may contain regressions or other
-outstanding issues. Please help us test and install with `preview` tag.
+After installation, simply run:
 
 ```bash
-npm install -g @google/gemini-cli@preview
+corethink
 ```
 
-### Stable
+This launches the interactive CLI where you can:
 
-- New stable releases will be published each week at UTC 2000 on Tuesdays, this
-  will be the full promotion of last week's `preview` release + any bug fixes
-  and validations. Use `latest` tag.
+- Ask questions and get AI-powered answers
+- Edit code across multiple files
+- Run shell commands with AI assistance
+- Analyze and understand codebases
+- Generate new code from descriptions
 
-```bash
-npm install -g @google/gemini-cli@latest
-```
-
-### Nightly
-
-- New releases will be published each day at UTC 0000. This will be all changes
-  from the main branch as represented at time of release. It should be assumed
-  there are pending validations and issues. Use `nightly` tag.
+### Quick Examples
 
 ```bash
-npm install -g @google/gemini-cli@nightly
+# Interactive mode
+corethink
+
+# One-shot query
+corethink "explain the main function in app.js"
+
+# YOLO mode (auto-approve all actions)
+corethink -y "refactor this code to use async/await"
 ```
 
 ## 📋 Key Features
@@ -93,283 +73,133 @@ npm install -g @google/gemini-cli@nightly
 ### Code Understanding & Generation
 
 - Query and edit large codebases
-- Generate new apps from PDFs, images, or sketches using multimodal capabilities
+- Generate new apps from descriptions, PDFs, images, or sketches
 - Debug issues and troubleshoot with natural language
+- Refactor code with AI-guided suggestions
 
 ### Automation & Integration
 
-- Automate operational tasks like querying pull requests or handling complex
-  rebases
-- Use MCP servers to connect new capabilities, including
-  [media generation with Imagen, Veo or Lyria](https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia)
-- Run non-interactively in scripts for workflow automation
+- Execute shell commands safely with approval workflows
+- Integrate with MCP servers for extended functionality
+- Chain multiple operations together
+- Custom extensions support
 
-### Advanced Capabilities
+### Smart Context Management
 
-- Ground your queries with built-in
-  [Google Search](https://ai.google.dev/gemini-api/docs/grounding) for real-time
-  information
-- Conversation checkpointing to save and resume complex sessions
-- Custom context files (GEMINI.md) to tailor behavior for your projects
+- Automatic context gathering from your workspace
+- File tree analysis and navigation
+- Git integration for version control awareness
+- Multi-file editing with conflict resolution
 
-### GitHub Integration
+## 🔧 Configuration
 
-Integrate Gemini CLI directly into your GitHub workflows with
-[**Gemini CLI GitHub Action**](https://github.com/google-github-actions/run-gemini-cli):
+CoreThink CLI stores its configuration in:
 
-- **Pull Request Reviews**: Automated code review with contextual feedback and
-  suggestions
-- **Issue Triage**: Automated labeling and prioritization of GitHub issues based
-  on content analysis
-- **On-demand Assistance**: Mention `@gemini-cli` in issues and pull requests
-  for help with debugging, explanations, or task delegation
-- **Custom Workflows**: Build automated, scheduled and on-demand workflows
-  tailored to your team's needs
+- `~/.config/corethink/` (Linux/macOS)
+- `%APPDATA%\corethink\` (Windows)
 
-## 🔐 Authentication Options
+Configuration includes:
 
-Choose the authentication method that best fits your needs:
+- API keys and authentication
+- Model preferences
+- Extension settings
+- Tool approval policies
 
-### Option 1: Login with Google (OAuth login using your Google Account)
+## 🛠️ Advanced Usage
 
-**✨ Best for:** Individual developers as well as anyone who has a Gemini Code
-Assist License. (see
-[quota limits and terms of service](https://cloud.google.com/gemini/docs/quotas)
-for details)
-
-**Benefits:**
-
-- **Free tier**: 60 requests/min and 1,000 requests/day
-- **Gemini 2.5 Pro** with 1M token context window
-- **No API key management** - just sign in with your Google account
-- **Automatic updates** to latest models
-
-#### Start Gemini CLI, then choose _Login with Google_ and follow the browser authentication flow when prompted
+### Approval Modes
 
 ```bash
-gemini
+# Default: prompt for approval
+corethink
+
+# Auto-approve edits only
+corethink --approval-mode auto_edit
+
+# Auto-approve everything (YOLO mode)
+corethink --approval-mode yolo
 ```
 
-#### If you are using a paid Code Assist License from your organization, remember to set the Google Cloud Project
+### Sandbox Mode
+
+Run potentially dangerous commands in an isolated sandbox:
 
 ```bash
-# Set your Google Cloud Project
-export GOOGLE_CLOUD_PROJECT="YOUR_PROJECT_ID"
-gemini
+corethink --sandbox
 ```
 
-### Option 2: Gemini API Key
+### Extensions
 
-**✨ Best for:** Developers who need specific model control or paid tier access
-
-**Benefits:**
-
-- **Free tier**: 100 requests/day with Gemini 2.5 Pro
-- **Model selection**: Choose specific Gemini models
-- **Usage-based billing**: Upgrade for higher limits when needed
+Manage extensions to enhance functionality:
 
 ```bash
-# Get your key from https://aistudio.google.com/apikey
-export GEMINI_API_KEY="YOUR_API_KEY"
-gemini
+# List installed extensions
+corethink extensions list
+
+# Install an extension
+corethink extensions install <extension-name>
+
+# Enable/disable extensions
+corethink extensions enable <extension-name>
+corethink extensions disable <extension-name>
 ```
 
-### Option 3: Vertex AI
+### MCP Server Integration
 
-**✨ Best for:** Enterprise teams and production workloads
-
-**Benefits:**
-
-- **Enterprise features**: Advanced security and compliance
-- **Scalable**: Higher rate limits with billing account
-- **Integration**: Works with existing Google Cloud infrastructure
+Add MCP servers for additional capabilities:
 
 ```bash
-# Get your key from Google Cloud Console
-export GOOGLE_API_KEY="YOUR_API_KEY"
-export GOOGLE_GENAI_USE_VERTEXAI=true
-gemini
+# Add an MCP server
+corethink mcp add
+
+# List configured MCP servers
+corethink mcp list
+
+# Remove an MCP server
+corethink mcp remove
 ```
 
-For Google Workspace accounts and other authentication methods, see the
-[authentication guide](./docs/get-started/authentication.md).
+## 📖 Documentation
 
-## 🚀 Getting Started
-
-### Basic Usage
-
-#### Start in current directory
-
-```bash
-gemini
-```
-
-#### Include multiple directories
-
-```bash
-gemini --include-directories ../lib,../docs
-```
-
-#### Use specific model
-
-```bash
-gemini -m gemini-2.5-flash
-```
-
-#### Non-interactive mode for scripts
-
-Get a simple text response:
-
-```bash
-gemini -p "Explain the architecture of this codebase"
-```
-
-For more advanced scripting, including how to parse JSON and handle errors, use
-the `--output-format json` flag to get structured output:
-
-```bash
-gemini -p "Explain the architecture of this codebase" --output-format json
-```
-
-For real-time event streaming (useful for monitoring long-running operations),
-use `--output-format stream-json` to get newline-delimited JSON events:
-
-```bash
-gemini -p "Run tests and deploy" --output-format stream-json
-```
-
-### Quick Examples
-
-#### Start a new project
-
-```bash
-cd new-project/
-gemini
-> Write me a Discord bot that answers questions using a FAQ.md file I will provide
-```
-
-#### Analyze existing code
-
-```bash
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-gemini
-> Give me a summary of all of the changes that went in yesterday
-```
-
-## 📚 Documentation
-
-### Getting Started
-
-- [**Quickstart Guide**](./docs/get-started/index.md) - Get up and running
-  quickly.
-- [**Authentication Setup**](./docs/get-started/authentication.md) - Detailed
-  auth configuration.
-- [**Configuration Guide**](./docs/get-started/configuration.md) - Settings and
-  customization.
-- [**Keyboard Shortcuts**](./docs/cli/keyboard-shortcuts.md) - Productivity
-  tips.
-
-### Core Features
-
-- [**Commands Reference**](./docs/cli/commands.md) - All slash commands
-  (`/help`, `/chat`, etc).
-- [**Custom Commands**](./docs/cli/custom-commands.md) - Create your own
-  reusable commands.
-- [**Context Files (GEMINI.md)**](./docs/cli/gemini-md.md) - Provide persistent
-  context to Gemini CLI.
-- [**Checkpointing**](./docs/cli/checkpointing.md) - Save and resume
-  conversations.
-- [**Token Caching**](./docs/cli/token-caching.md) - Optimize token usage.
-
-### Tools & Extensions
-
-- [**Built-in Tools Overview**](./docs/tools/index.md)
-  - [File System Operations](./docs/tools/file-system.md)
-  - [Shell Commands](./docs/tools/shell.md)
-  - [Web Fetch & Search](./docs/tools/web-fetch.md)
-- [**MCP Server Integration**](./docs/tools/mcp-server.md) - Extend with custom
-  tools.
-- [**Custom Extensions**](./docs/extensions/index.md) - Build and share your own
-  commands.
-
-### Advanced Topics
-
-- [**Headless Mode (Scripting)**](./docs/cli/headless.md) - Use Gemini CLI in
-  automated workflows.
-- [**Architecture Overview**](./docs/architecture.md) - How Gemini CLI works.
-- [**IDE Integration**](./docs/ide-integration/index.md) - VS Code companion.
-- [**Sandboxing & Security**](./docs/cli/sandbox.md) - Safe execution
-  environments.
-- [**Trusted Folders**](./docs/cli/trusted-folders.md) - Control execution
-  policies by folder.
-- [**Enterprise Guide**](./docs/cli/enterprise.md) - Deploy and manage in a
-  corporate environment.
-- [**Telemetry & Monitoring**](./docs/cli/telemetry.md) - Usage tracking.
-- [**Tools API Development**](./docs/core/tools-api.md) - Create custom tools.
-- [**Local development**](./docs/local-development.md) - Local development
-  tooling.
-
-### Troubleshooting & Support
-
-- [**Troubleshooting Guide**](./docs/troubleshooting.md) - Common issues and
-  solutions.
-- [**FAQ**](./docs/faq.md) - Frequently asked questions.
-- Use `/bug` command to report issues directly from the CLI.
-
-### Using MCP Servers
-
-Configure MCP servers in `~/.gemini/settings.json` to extend Gemini CLI with
-custom tools:
-
-```text
-> @github List my open pull requests
-> @slack Send a summary of today's commits to #dev channel
-> @database Run a query to find inactive users
-```
-
-See the [MCP Server Integration guide](./docs/tools/mcp-server.md) for setup
-instructions.
+For detailed documentation, guides, and examples, visit the original
+[Gemini CLI documentation](https://geminicli.com/docs/) (much of which applies
+to CoreThink CLI as it's based on the same codebase).
 
 ## 🤝 Contributing
 
-We welcome contributions! Gemini CLI is fully open source (Apache 2.0), and we
-encourage the community to:
+CoreThink CLI is based on Google's open-source Gemini CLI. Contributions are
+welcome!
 
-- Report bugs and suggest features.
-- Improve documentation.
-- Submit code improvements.
-- Share your MCP servers and extensions.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-See our [Contributing Guide](./CONTRIBUTING.md) for development setup, coding
-standards, and how to submit pull requests.
+## 📝 License
 
-Check our [Official Roadmap](https://github.com/orgs/google-gemini/projects/11)
-for planned features and priorities.
+CoreThink CLI is released under the Apache 2.0 License. See [LICENSE](./LICENSE)
+for details.
 
-## 📖 Resources
+## 🙏 Acknowledgments
 
-- **[Official Roadmap](./ROADMAP.md)** - See what's coming next.
-- **[Changelog](./docs/changelogs/index.md)** - See recent notable updates.
-- **[NPM Package](https://www.npmjs.com/package/@google/gemini-cli)** - Package
-  registry.
-- **[GitHub Issues](https://github.com/google-gemini/gemini-cli/issues)** -
-  Report bugs or request features.
-- **[Security Advisories](https://github.com/google-gemini/gemini-cli/security/advisories)** -
-  Security updates.
+CoreThink CLI is built on the foundation of
+[Google's Gemini CLI](https://github.com/google-gemini/gemini-cli), an excellent
+open-source project that pioneered terminal-based AI assistance. We're grateful
+to the Gemini CLI team and contributors for their outstanding work.
 
-### Uninstall
+## 🔗 Links
 
-See the [Uninstall Guide](docs/cli/uninstall.md) for removal instructions.
+- **NPM Package**: https://www.npmjs.com/package/corethink-cli
+- **GitHub Repository**: https://github.com/dhruv-corethink/corethink-cli
+- **Issues & Support**: https://github.com/dhruv-corethink/corethink-cli/issues
 
-## 📄 Legal
+## ⚡ Quick Tips
 
-- **License**: [Apache License 2.0](LICENSE)
-- **Terms of Service**: [Terms & Privacy](./docs/tos-privacy.md)
-- **Security**: [Security Policy](SECURITY.md)
+- Use `corethink --help` to see all available options
+- Press `Ctrl+C` to exit the interactive mode
+- Use `/help` within the CLI for in-session help
+- Check `~/.config/corethink/logs/` for debugging
 
 ---
 
-<p align="center">
-  Built with ❤️ by Google and the open source community
-</p>
+**Built with ❤️ by the CoreThink team**

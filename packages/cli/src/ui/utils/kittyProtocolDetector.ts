@@ -100,7 +100,7 @@ export async function detectAndEnableKittyProtocol(): Promise<void> {
 import {
   enableKittyKeyboardProtocol,
   disableKittyKeyboardProtocol,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 
 export function isKittyProtocolEnabled(): boolean {
   return kittyEnabled;

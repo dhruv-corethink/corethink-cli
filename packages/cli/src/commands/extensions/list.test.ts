@@ -23,9 +23,8 @@ const debugLogger = vi.hoisted(() => ({
   }),
 }));
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('corethink-cli-core')>();
   return {
     ...actual,
     coreEvents: {

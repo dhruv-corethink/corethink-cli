@@ -16,10 +16,10 @@ import {
   WEB_FETCH_TOOL_NAME,
   type ExtensionLoader,
   debugLogger,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import { loadCliConfig, parseArguments, type CliArgs } from './config.js';
 import type { Settings } from './settings.js';
-import * as ServerConfig from '@google/gemini-cli-core';
+import * as ServerConfig from 'corethink-cli-core';
 import { isWorkspaceTrusted } from './trustedFolders.js';
 import { ExtensionManager } from './extension-manager.js';
 import { RESUME_LATEST } from '../utils/sessionUtils.js';
@@ -84,10 +84,9 @@ vi.mock('read-package-up', () => ({
   ),
 }));
 
-vi.mock('@google/gemini-cli-core', async () => {
-  const actualServer = await vi.importActual<typeof ServerConfig>(
-    '@google/gemini-cli-core',
-  );
+vi.mock('corethink-cli-core', async () => {
+  const actualServer =
+    await vi.importActual<typeof ServerConfig>('corethink-cli-core');
   return {
     ...actualServer,
     IdeClient: {

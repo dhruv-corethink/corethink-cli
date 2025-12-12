@@ -27,7 +27,7 @@ import {
   type UserFeedbackPayload,
   type ResumedSessionData,
   AuthType,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 
 // Mock coreEvents
 const mockCoreEvents = vi.hoisted(() => ({
@@ -47,9 +47,8 @@ const mocks = vi.hoisted(() => ({
   mockStdout: { write: vi.fn() },
 }));
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('corethink-cli-core')>();
   return {
     ...actual,
     coreEvents: mockCoreEvents,
@@ -171,7 +170,7 @@ import {
   writeToStdout,
   enableMouseEvents,
   disableMouseEvents,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import { type ExtensionManager } from '../config/extension-manager.js';
 
 describe('AppContainer State Management', () => {

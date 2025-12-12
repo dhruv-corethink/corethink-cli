@@ -6,11 +6,7 @@
 
 import type React from 'react';
 import { Box, Text } from 'ink';
-import {
-  type Todo,
-  type TodoList,
-  type TodoStatus,
-} from '@google/gemini-cli-core';
+import { type Todo, type TodoList, type TodoStatus } from 'corethink-cli-core';
 import { theme } from '../../semantic-colors.js';
 import { useUIState } from '../../contexts/UIStateContext.js';
 import { useMemo } from 'react';

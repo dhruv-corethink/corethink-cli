@@ -14,7 +14,7 @@ import {
   useRef,
 } from 'react';
 import { ESC } from '../utils/input.js';
-import { debugLogger } from '@google/gemini-cli-core';
+import { debugLogger } from 'corethink-cli-core';
 import { appEvents, AppEvent } from '../../utils/events.js';
 import {
   isIncompleteMouseSequence,

@@ -14,7 +14,7 @@ import type {
   DiscoveredMCPPrompt,
   DiscoveredMCPResource,
   MessageActionReturn,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import {
   DiscoveredMCPTool,
   getMCPDiscoveryState,
@@ -24,7 +24,7 @@ import {
   getErrorMessage,
   MCPOAuthTokenStorage,
   mcpServerRequiresOAuth,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import { appEvents, AppEvent } from '../../utils/events.js';
 import { MessageType, type HistoryItemMcpStatus } from '../types.js';
 
@@ -110,7 +110,7 @@ const authCommand: SlashCommand = {
       );
 
       // Import dynamically to avoid circular dependencies
-      const { MCPOAuthProvider } = await import('@google/gemini-cli-core');
+      const { MCPOAuthProvider } = await import('corethink-cli-core');
 
       let oauthConfig = server.oauth;
       if (!oauthConfig) {

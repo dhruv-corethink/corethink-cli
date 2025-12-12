@@ -17,7 +17,7 @@ vi.mock('node:fs', () => ({
   writeSync: mocks.writeSync,
 }));
 
-vi.mock('@google/gemini-cli-core', () => ({
+vi.mock('corethink-cli-core', () => ({
   enableKittyKeyboardProtocol: mocks.enableKittyKeyboardProtocol,
   disableKittyKeyboardProtocol: mocks.disableKittyKeyboardProtocol,
 }));

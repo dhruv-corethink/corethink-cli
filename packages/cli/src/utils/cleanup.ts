@@ -10,8 +10,8 @@ import {
   Storage,
   shutdownTelemetry,
   isTelemetrySdkInitialized,
-} from '@google/gemini-cli-core';
-import type { Config } from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
+import type { Config } from 'corethink-cli-core';
 
 const cleanupFunctions: Array<(() => void) | (() => Promise<void>)> = [];
 const syncCleanupFunctions: Array<() => void> = [];

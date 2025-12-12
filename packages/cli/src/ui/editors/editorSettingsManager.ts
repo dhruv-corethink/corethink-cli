@@ -9,7 +9,7 @@ import {
   checkHasEditorType,
   type EditorType,
   EDITOR_DISPLAY_NAMES,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 
 export interface EditorDisplay {
   name: string;

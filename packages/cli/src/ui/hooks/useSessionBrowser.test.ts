@@ -18,7 +18,7 @@ import type {
   Config,
   ConversationRecord,
   MessageRecord,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 
 // Mock modules
 vi.mock('fs/promises');

@@ -13,9 +13,9 @@ import { MultiFolderTrustDialog } from '../components/MultiFolderTrustDialog.js'
 import type { SlashCommand, CommandContext } from './types.js';
 import { CommandKind } from './types.js';
 import { MessageType, type HistoryItem } from '../types.js';
-import { refreshServerHierarchicalMemory } from '@google/gemini-cli-core';
+import { refreshServerHierarchicalMemory } from 'corethink-cli-core';
 import { expandHomeDir } from '../utils/directoryUtils.js';
-import type { Config } from '@google/gemini-cli-core';
+import type { Config } from 'corethink-cli-core';
 
 async function finishAddingDirectories(
   config: Config,

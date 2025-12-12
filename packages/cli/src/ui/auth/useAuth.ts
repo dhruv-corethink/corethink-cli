@@ -11,8 +11,8 @@ import {
   type Config,
   loadApiKey,
   debugLogger,
-} from '@google/gemini-cli-core';
-import { getErrorMessage } from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
+import { getErrorMessage } from 'corethink-cli-core';
 import { AuthState } from '../types.js';
 import { validateAuthMethod } from '../../config/auth.js';
 
@@ -90,7 +90,9 @@ export const useAuthCommand = (settings: LoadedSettings, config: Config) => {
           setAuthError(null);
           setAuthState(AuthState.Authenticated);
         } catch (e) {
-          onAuthError(`Failed to login with CoreThink. Message: ${getErrorMessage(e)}`);
+          onAuthError(
+            `Failed to login with CoreThink. Message: ${getErrorMessage(e)}`,
+          );
         }
         return;
       }

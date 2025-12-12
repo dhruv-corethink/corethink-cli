@@ -20,17 +20,16 @@ import {
   type ToolCallRequestInfo,
   type GitService,
   type CompletedToolCall,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import { createMockConfig } from '../utils/testing_utils.js';
 import type { ExecutionEventBus, RequestContext } from '@a2a-js/sdk/server';
 import { CoderAgentEvent } from '../types.js';
-import type { ToolCall } from '@google/gemini-cli-core';
+import type { ToolCall } from 'corethink-cli-core';
 
 const mockProcessRestorableToolCalls = vi.hoisted(() => vi.fn());
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const original = await importOriginal<typeof import('corethink-cli-core')>();
   return {
     ...original,
     processRestorableToolCalls: mockProcessRestorableToolCalls,

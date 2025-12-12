@@ -6,8 +6,8 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { main } from './gemini.js';
-import { debugLogger } from '@google/gemini-cli-core';
-import { type Config } from '@google/gemini-cli-core';
+import { debugLogger } from 'corethink-cli-core';
+import { type Config } from 'corethink-cli-core';
 
 // Custom error to identify mock process.exit calls
 class MockProcessExitError extends Error {
@@ -17,9 +17,8 @@ class MockProcessExitError extends Error {
   }
 }
 
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('corethink-cli-core')>();
   return {
     ...actual,
     writeToStdout: vi.fn(),

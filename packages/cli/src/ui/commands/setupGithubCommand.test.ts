@@ -17,8 +17,8 @@ import {
 } from './setupGithubCommand.js';
 import type { CommandContext } from './types.js';
 import * as commandUtils from '../utils/commandUtils.js';
-import type { ToolActionReturn } from '@google/gemini-cli-core';
-import { debugLogger } from '@google/gemini-cli-core';
+import type { ToolActionReturn } from 'corethink-cli-core';
+import { debugLogger } from 'corethink-cli-core';
 
 vi.mock('child_process');
 

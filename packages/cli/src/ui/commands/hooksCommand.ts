@@ -10,8 +10,8 @@ import { MessageType, type HistoryItemHooksList } from '../types.js';
 import type {
   HookRegistryEntry,
   MessageActionReturn,
-} from '@google/gemini-cli-core';
-import { getErrorMessage } from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
+import { getErrorMessage } from 'corethink-cli-core';
 import { SettingScope } from '../../config/settings.js';
 
 /**

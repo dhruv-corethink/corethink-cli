@@ -63,7 +63,7 @@ import {
   fireSessionStartHook,
   fireSessionEndHook,
   getVersion,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import {
   initializeApp,
   type InitializationResult,

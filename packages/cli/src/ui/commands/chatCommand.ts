@@ -14,10 +14,7 @@ import type {
   SlashCommandActionReturn,
 } from './types.js';
 import { CommandKind } from './types.js';
-import {
-  decodeTagName,
-  type MessageActionReturn,
-} from '@google/gemini-cli-core';
+import { decodeTagName, type MessageActionReturn } from 'corethink-cli-core';
 import path from 'node:path';
 import type {
   HistoryItemWithoutId,

@@ -5,8 +5,8 @@
  */
 
 import { vi, type MockInstance } from 'vitest';
-import type { Config } from '@google/gemini-cli-core';
-import { OutputFormat, FatalInputError } from '@google/gemini-cli-core';
+import type { Config } from 'corethink-cli-core';
+import { OutputFormat, FatalInputError } from 'corethink-cli-core';
 import {
   getErrorMessage,
   handleError,
@@ -16,9 +16,8 @@ import {
 } from './errors.js';
 
 // Mock the core modules
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
-  const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+vi.mock('corethink-cli-core', async (importOriginal) => {
+  const original = await importOriginal<typeof import('corethink-cli-core')>();
 
   return {
     ...original,

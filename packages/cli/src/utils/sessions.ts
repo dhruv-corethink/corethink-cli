@@ -8,7 +8,7 @@ import {
   ChatRecordingService,
   generateSummary,
   type Config,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import {
   formatRelativeTime,
   SessionSelector,

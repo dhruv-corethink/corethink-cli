@@ -43,7 +43,7 @@ import {
   type GeminiCLIExtension,
   type HookDefinition,
   type HookEventName,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import { maybeRequestConsentOrFail } from './extensions/consent.js';
 import { resolveEnvVarsInObject } from '../utils/envVarResolver.js';
 import { ExtensionStorage } from './extensions/storage.js';

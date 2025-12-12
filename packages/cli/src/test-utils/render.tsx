@@ -26,7 +26,7 @@ import {
   UIActionsContext,
 } from '../ui/contexts/UIActionsContext.js';
 
-import { type Config } from '@google/gemini-cli-core';
+import { type Config } from 'corethink-cli-core';
 
 // Wrapper around ink-testing-library's render that ensures act() is called
 export const render = (

@@ -1,10 +1,10 @@
 {
-  "name": "@google/gemini-cli-core",
-  "version": "0.21.0-nightly.20251211.8c83e1ea9",
-  "description": "Gemini CLI Core",
+  "name": "corethink-cli-core",
+  "version": "1.0.1",
+  "description": "CoreThink CLI Core Library",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google-gemini/gemini-cli.git"
+    "url": "git+https://github.com/dhruv-corethink/corethink-cli.git"
   },
   "type": "module",
   "main": "dist/index.js",
@@ -79,7 +79,6 @@
     "node-pty": "^1.0.0"
   },
   "devDependencies": {
-    "@google/gemini-cli-test-utils": "file:../test-utils",
     "@types/diff": "^7.0.2",
     "@types/dotenv": "^6.1.1",
     "@types/fast-levenshtein": "^0.0.4",
@@ -88,7 +87,8 @@
     "@types/ws": "^8.5.10",
     "msw": "^2.3.4",
     "typescript": "^5.3.3",
-    "vitest": "^3.1.1"
+    "vitest": "^3.1.1",
+    "corethink-cli-test-utils": "file:../test-utils"
   },
   "engines": {
     "node": ">=20"

@@ -19,8 +19,8 @@ import type {
   ToolCall,
   Status as CoreStatus,
   EditorType,
-} from '@google/gemini-cli-core';
-import { CoreToolScheduler, debugLogger } from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
+import { CoreToolScheduler, debugLogger } from 'corethink-cli-core';
 import { useCallback, useState, useMemo, useEffect, useRef } from 'react';
 import type {
   HistoryItemToolGroup,

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Gemini CLI Local Runner
-# This script runs the locally built Gemini CLI
+# CoreThink CLI Local Runner
+# This script runs the locally built CoreThink CLI
 
 cd "$(dirname "$0")"
-node bundle/gemini.js "$@"
+node bundle/corethink.js "$@"
 
 

@@ -13,7 +13,7 @@ import {
   isWithinRoot,
   ideContextStore,
   GEMINI_DIR,
-} from '@google/gemini-cli-core';
+} from 'corethink-cli-core';
 import type { Settings } from './settings.js';
 import stripJsonComments from 'strip-json-comments';
 
